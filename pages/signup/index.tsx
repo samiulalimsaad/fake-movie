@@ -27,6 +27,7 @@ const Signup = () => {
 
     const createUser = (values: loginInterface) => {
         localStorage.setItem("userInfo", JSON.stringify(values));
+        localStorage.setItem("auth", "true");
         router.push("/");
     };
 
@@ -149,10 +150,7 @@ const Signup = () => {
                                 />
                             </div>
                             <div className="space-y-4 form-control">
-                                <button
-                                    className="w-full px-4 py-2 font-bold bg-teal-300 rounded hover:text-white text-slate-700 hover:bg-teal-700 focus:outline-none focus:shadow-outline"
-                                    disabled={isSubmitting}
-                                >
+                                <button className="w-full px-4 py-2 font-bold bg-teal-300 rounded hover:text-white text-slate-700 hover:bg-teal-700 focus:outline-none focus:shadow-outline">
                                     Sign up
                                 </button>
                             </div>

@@ -20,11 +20,14 @@ const Login = () => {
     const router = useRouter();
 
     const createUser = (values: loginInterface) => {
-        const userInfo = JSON.parse(localStorage.getItem("userInfo") || "");
+        const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
+
+        console.log(userInfo);
         if (
-            userInfo.name === values.name &&
-            userInfo.password === values.password
+            userInfo?.name === values.name &&
+            userInfo?.password === values.password
         ) {
+            localStorage.setItem("auth", "true");
             router.push("/");
         } else {
             alert("Invalid Credentials");
@@ -38,7 +41,7 @@ const Login = () => {
                 validationSchema={LoginValidationSchema}
                 initialValues={initialValue}
             >
-                {({ isSubmitting }) => (
+                {() => (
                     <Form className="sm:w-1/3">
                         <div className="p-4 px-8 pt-6 pb-8 mb-4 bg-white border rounded-md shadow-md border-slate-500">
                             <div className="mb-4 form-control">
@@ -82,7 +85,10 @@ const Login = () => {
                                 />
                             </div>
                             <div className="space-y-4 form-control">
-                                <button className="w-full px-4 py-2 font-bold bg-teal-300 rounded hover:text-white text-slate-700 hover:bg-teal-700 focus:outline-none focus:shadow-outline disabled:bg-teal-800">
+                                <button
+                                    className="w-full px-4 py-2 font-bold bg-teal-300 rounded hover:text-white text-slate-700 hover:bg-teal-700 focus:outline-none focus:shadow-outline disabled:bg-teal-800"
+                                    type="submit"
+                                >
                                     Login
                                 </button>
                             </div>

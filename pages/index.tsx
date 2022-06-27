@@ -12,9 +12,9 @@ const Home: NextPage = () => {
     const router = useRouter();
 
     useEffect(() => {
-        const isAuth = JSON.parse(localStorage.getItem("auth") || "false");
+        const isAuth = localStorage.getItem("auth");
 
-        if (!isAuth) {
+        if (isAuth != "true") {
             router.push("/login");
         }
 
@@ -29,14 +29,13 @@ const Home: NextPage = () => {
                         sort: "voting",
                     }
                 );
-                console.log(data);
                 setState(data);
             } catch (error) {
                 console.log(error);
             }
         };
         getData();
-    }, []);
+    }, [router]);
 
     return (
         <section className="flex justify-center py-4 bg-slate-200">
