@@ -5,7 +5,11 @@ const Navbar = () => {
         <header>
             <nav className="navbar bg-sky-400">
                 <div className="flex-1">
-                    <a className="text-xl normal-case btn btn-ghost">IMFD</a>
+                    <Link href="/" passHref>
+                        <a className="text-xl normal-case btn btn-ghost">
+                            IMFD
+                        </a>
+                    </Link>
                 </div>
                 <div className="flex-none">
                     <ul className="p-0 menu menu-horizontal">
