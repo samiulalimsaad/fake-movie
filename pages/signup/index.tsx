@@ -15,7 +15,7 @@ interface loginInterface {
 const initialValue = {
     name: "",
     phone: "",
-    profession: "",
+    profession: "student",
     email: "",
     password: "",
 };
@@ -107,7 +107,7 @@ const Signup = () => {
                                     Profession
                                 </label>
                                 <Field
-                                    className="w-full px-3 py-2 leading-tight border rounded shadow appearance-none text-slate-700 focus:outline-none focus:shadow-outline select capitalize"
+                                    className="w-full px-3 py-2 leading-tight capitalize border rounded shadow appearance-none text-slate-700 focus:outline-none focus:shadow-outline select"
                                     id="profession"
                                     name="profession"
                                     as="select"
