@@ -2,13 +2,22 @@ import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/outline";
 import axios from "axios";
 import type { NextPage } from "next";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { months } from "../components/utils/months";
 
 const Home: NextPage = () => {
     const [state, setState] = useState<any>([]);
 
+    const router = useRouter();
+
     useEffect(() => {
+        const isAuth = JSON.parse(localStorage.getItem("auth") || "false");
+
+        if (!isAuth) {
+            router.push("/login");
+        }
+
         const getData = async () => {
             try {
                 const { data } = await axios.post(
@@ -44,7 +53,7 @@ const Home: NextPage = () => {
                                 <ChevronDownIcon className="w-6 h-6" />
                             </div>
                             <div className="flex flex-row card-body">
-                                <figure className="w-1/2">
+                                <figure className="">
                                     <Image
                                         src={v.poster}
                                         alt={v.title}
@@ -80,6 +89,10 @@ const Home: NextPage = () => {
                                                 new Date(1617218999).getMonth()
                                             ]
                                         }
+                                    </p>
+                                    <p className="text-sky-600">
+                                        {v.pageViews} views | voted by{" "}
+                                        {v.voted.length} people
                                     </p>
                                 </div>
                             </div>
